@@ -1,8 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+
  */
 package TiendaComputador;
+
+import ComputadoresVista.AgregarComputador;
+import MenuPrincipal.MenuPrincipal;
 
 /**
  *
@@ -15,8 +17,13 @@ public class TiendaComputadores {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //validaciones de textto
         
         
+        MenuPrincipal menuprincipal = MenuPrincipal.getInstance();
+        menuprincipal.setVisible(true);
     }
     
 }
+
+

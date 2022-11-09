@@ -4,31 +4,33 @@
  */
 package MenuPrincipal;
 
-import Computadores.ComputadoresController;
 import ComputadoresVista.AgregarComputador;
-import DaoComputadores.DaoComputadores;
 import MostrarCompus.MostrarCompus;
+import java.applet.AudioClip;
 
 /**
  *
  * @author HUMBERTO
  */
-public class  MenuPrincipal  extends javax.swing.JFrame implements Runnable {
+public class  MenuPrincipal  extends javax.swing.JFrame  {
     
-    private static MenuPrincipal instancia;
+    private static MenuPrincipal menuPrincipal;
 
     /**
      * Creates new form MenuPrincipal
      */
-    public static MenuPrincipal getInstancia()
+
+   
+    public static MenuPrincipal getInstance()
    {
-       if (instancia == null)
-       {
-           instancia = new MenuPrincipal();
+       if (menuPrincipal == null)
+           menuPrincipal = new MenuPrincipal();
         
-       }
-       return instancia;
+       return menuPrincipal;
    }
+
+   
+    
    private MenuPrincipal() {
         initComponents();
         
@@ -50,23 +52,28 @@ public class  MenuPrincipal  extends javax.swing.JFrame implements Runnable {
         jButton1 = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setForeground(new java.awt.Color(0, 0, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar A Tienda");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 36));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 90));
 
+        btnMostrar.setBackground(new java.awt.Color(51, 51, 51));
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
         btnMostrar.setText("Mostrar Computadores");
         btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -81,38 +88,45 @@ public class  MenuPrincipal  extends javax.swing.JFrame implements Runnable {
                 btnMostrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 179, 36));
+        jPanel2.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 140, 80));
 
+        jButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 90, 36));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 90, 90));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/VENOM1.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MenuPrincipal/giftencno.gif"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 270));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 270));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MenuPrincipal/bienvenidos gif.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 280));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 130, 570, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BIENBB.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 130));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,9 +144,14 @@ public class  MenuPrincipal  extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AgregarComputador MenuIngresar = AgregarComputador.getInstancia();
+      
+        
+        AgregarComputador MenuIngresar = AgregarComputador.getInstance();
         MenuIngresar.setVisible(true);
         this.dispose();
+        AudioClip sonido;
+      sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonido/Edith2.wav"));
+      sonido.play();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnMostrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseEntered
@@ -194,8 +213,5 @@ public class  MenuPrincipal  extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-}
+

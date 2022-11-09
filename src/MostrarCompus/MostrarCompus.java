@@ -5,20 +5,43 @@
 package MostrarCompus;
 
 import Computadores.ComputadoresController;
+import ComputadoresVista.AgregarComputador;
+import EditarComputadores.EditarComputadores;
 import DaoComputadores.DaoComputadores;
 import MenuPrincipal.MenuPrincipal;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HUMBERTO
  */
 public class MostrarCompus extends javax.swing.JFrame {
+    
+    private static MostrarCompus instancia=null;
+
+    
+    
+
+    private DefaultTableModel marca;
 
     /**
      * Creates new form MostrarCompus
      */
+
     public MostrarCompus() {
         initComponents();
+    }
+    private void ActuListaCompu(){
+        DaoComputadores compCont = ComputadoresController.getInstance();
+        marca=compCont.MostrarComputadores();
+        jTable1.setModel(marca);
+        }
+    public static MostrarCompus getInstance(){
+        if(instancia==null)
+            instancia=new MostrarCompus();
+        instancia.ActuListaCompu();
+        return instancia;
     }
 
     /**
@@ -37,6 +60,9 @@ public class MostrarCompus extends javax.swing.JFrame {
         botones = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +75,7 @@ public class MostrarCompus extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,10 +105,31 @@ public class MostrarCompus extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Inf");
+        btnMostrar.setText("Actualizar");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Agregar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -93,9 +140,14 @@ public class MostrarCompus extends javax.swing.JFrame {
             .addGroup(botonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMostrar)
-                .addGap(56, 56, 56))
+                .addComponent(btnMostrar))
         );
         botonesLayout.setVerticalGroup(
             botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +155,10 @@ public class MostrarCompus extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(btnMostrar))
+                    .addComponent(btnMostrar)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -135,16 +190,74 @@ public class MostrarCompus extends javax.swing.JFrame {
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-         DaoComputadores compuCont = ComputadoresController.getInstance();
-      jTable1.setModel (compuCont.MostrarComputadores());
+        this.ActuListaCompu();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         MenuPrincipal menuOne = MenuPrincipal.getInstancia();
+         MenuPrincipal menuOne = MenuPrincipal.getInstance();
         menuOne.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        AgregarComputador interfaz = AgregarComputador.getInstance();
+        interfaz.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+      try{
+            if(jTable1.getSelectedRow()>=0){
+                String seleccionTxt=""+marca.getValueAt(jTable1.getSelectedRow(),jTable1.getSelectedColumn());
+                if(!seleccionTxt.equals("null")){
+                    //Arreglo de pokemon
+                    String[] computador=new String[4];
+                    for(int i=0;i<4;i++){
+                        computador[i]=marca.getValueAt(jTable1.getSelectedRow(),i).toString();
+                    }
+                    EditarComputadores editar = EditarComputadores.getInstance();
+                    editar.setVisible(true);
+                    editar.porDefecto();
+                    editar.datosPorActualizar(computador);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar un campo no vacio", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Debe seleccionar un elemento", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.toString());
+        }  
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+         try
+       {
+           ComputadoresController computador= ComputadoresController.getInstance();
+            int codigo;
+        
+            codigo=jTable1.getSelectedRow();
+            if(!String.valueOf(codigo).equals(null))
+            {
+                computador.EliminarComputador(codigo);
+            jTable1.setModel(computador.MostrarComputadores());
+            }
+            
+       }catch(Exception e)
+       {
+           JOptionPane.showMessageDialog(null, "seleccionar elementos");
+       }
+                           
+        
+                                          
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,9 +298,15 @@ public class MostrarCompus extends javax.swing.JFrame {
     private javax.swing.JPanel botones;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+   
+        
 }

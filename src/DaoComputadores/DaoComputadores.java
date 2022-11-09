@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public interface DaoComputadores {
     
-    public boolean GuardarComputador (String pComputador, String nMarca, String tComputador );
+    public boolean GuardarComputador (String pComputador, String nMarca,String aAccesorios, String tComputador );
     // pvehiculo = placa del vehiculo 
     public boolean GuardarComputador (String[]vehiculo);
     public DefaultTableModel MostrarComputadores ();
