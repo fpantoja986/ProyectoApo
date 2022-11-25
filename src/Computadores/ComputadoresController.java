@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JFileChooser;
+ 
 
 /**
  *
@@ -72,7 +74,7 @@ public class ComputadoresController implements DaoComputadores {
        
        // agregamos filas al modelo 
        
-       for(int i=0;i<100;i++){
+       for(int i=0;i<15;i++){
            String[] computador = new String [4];
            for (int j=0;j<4;j++){
                if (computadores[j][i] != null)
@@ -83,6 +85,7 @@ public class ComputadoresController implements DaoComputadores {
        return marca;
    }
 
+    @Override
      public boolean ActualizarComputador(String[] computador) {
         int fila=0;
         for(int i=0;i<pComputador;i++){
@@ -91,11 +94,10 @@ public class ComputadoresController implements DaoComputadores {
                 break;
             }
         }
+        computadores[0][fila]=computador[0];
         computadores[1][fila]=computador[1];
         computadores[2][fila]=computador[2];
         computadores[3][fila]=computador[3];
-        computadores[4][fila]=computador[4];
-        computadores[5][fila]=computador[5];
         return true;
     }
     
@@ -105,7 +107,7 @@ public class ComputadoresController implements DaoComputadores {
          if( pComputador>=1)
        {
             
-            int seleccion = JOptionPane.showConfirmDialog(null," desea eliminar  pokemon: "+computadores[1][codigo], "",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            int seleccion = JOptionPane.showConfirmDialog(null," desea eliminar: "+computadores[1][codigo], "",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             System.out.println(seleccion);
             if(seleccion==0)
             {
@@ -122,14 +124,15 @@ public class ComputadoresController implements DaoComputadores {
                     codigo++;            
                 }
                 pComputador--;
-                JOptionPane.showMessageDialog(null,"se ha eliminado");
+                JOptionPane.showMessageDialog(null,"se ha eliminado la compra");
             }       
        }      
        else
        {
-            JOptionPane.showMessageDialog(null, "no hay pokemones para eliminar");   
+            JOptionPane.showMessageDialog(null, "no computadores por eliminar");   
         }
     }
+    @Override
     public boolean GuardarArchivo() {
         FileWriter fw;
         String datos="";
@@ -138,7 +141,7 @@ public class ComputadoresController implements DaoComputadores {
         for(int i=0;i<pComputador;i++){
             
             for(int j=0;j<4;j++){
-                //System.out.println("codigo "+pokemones[i][j]+": nombre: "+pokemones[i][j]);
+                
                 if(computadores[j][i] != null)
                     datos+=computadores[j][i]+"-";
             }
@@ -146,7 +149,14 @@ public class ComputadoresController implements DaoComputadores {
         }
         
         try{
-            fw=new FileWriter("pokemones.txt");
+            JFileChooser guardar = new JFileChooser();
+            guardar.showSaveDialog(null);
+            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            //String archivo = ""+guardar.getSelectedFile();
+            String ruta = ""+guardar.getCurrentDirectory();
+            String nombre = guardar.getSelectedFile().getName();
+            
+            fw=new FileWriter(ruta+"\\"+nombre+".txt");
             fw.write(datos);
             fw.close();
             gDatos=true;
@@ -158,10 +168,7 @@ public class ComputadoresController implements DaoComputadores {
         
     }
 
-    @Override
-    public void ActualizarComputador(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     
 }

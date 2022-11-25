@@ -14,10 +14,12 @@ public interface DaoComputadores {
     
     public boolean GuardarComputador (String pComputador, String nMarca,String aAccesorios, String tComputador );
     // pvehiculo = placa del vehiculo 
-    public boolean GuardarComputador (String[]vehiculo);
+    public boolean GuardarComputador (String[]computador);
     public DefaultTableModel MostrarComputadores ();
-    public void ActualizarComputador (int codigo);
+    public boolean ActualizarComputador (String []computador);
     public void EliminarComputador (int codigo);    
+
+    public boolean GuardarArchivo();
     
     
 }

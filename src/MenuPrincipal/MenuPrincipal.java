@@ -63,6 +63,7 @@ public class  MenuPrincipal  extends javax.swing.JFrame  {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar A Tienda");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,9 +71,10 @@ public class  MenuPrincipal  extends javax.swing.JFrame  {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 90));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, 90));
 
         btnMostrar.setBackground(new java.awt.Color(51, 51, 51));
+        btnMostrar.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
         btnMostrar.setText("Mostrar Computadores");
         btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,10 +90,10 @@ public class  MenuPrincipal  extends javax.swing.JFrame  {
                 btnMostrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 140, 80));
+        jPanel2.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, 80));
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setBackground(new java.awt.Color(153, 255, 204));
+        jButton3.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jButton3.setText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,11 +135,19 @@ public class  MenuPrincipal  extends javax.swing.JFrame  {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+          AudioClip sonido;
+      sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonido/boton.wav"));
+      sonido.play();
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
+         AudioClip sonido;
+      sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonido/boton.wav"));
+      sonido.play();
+        
  
         new MostrarCompus().setVisible(true);
     }//GEN-LAST:event_btnMostrarActionPerformed
